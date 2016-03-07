@@ -13,10 +13,13 @@ cursor = db.cursor()
 
 
 #Insert values
-add_avgSpeed = ("""INSERT INTO Trip (AvgVehicleSpeed) VALUES ('%s')""")
+add_avgSpeed = ("""INSERT INTO Trip
+(StartTidspunkt, SluttTidspunkt, AvgVehicleSpeed,TripLength, FuelLevel, FuelConsume)
+VALUES (%s,%s,%s,%s,%s,%s);""")
 
+data_Trip = ('TestTidS','TestTidF', jsn.getAvgSpeed(),10,10,10)
 #Execute SQL code for db interaction
-cursor.execute(add_avgSpeed,(jsn.getAvgSpeed()))
+cursor.execute(add_avgSpeed,data_Trip)
 
 #Commit changes to database
 db.commit()
