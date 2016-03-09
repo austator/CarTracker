@@ -14,10 +14,10 @@ cursor = db.cursor()
 
 #Insert values
 add_avgSpeed = ("""INSERT INTO Trip
-(StartTidspunkt, SluttTidspunkt, AvgVehicleSpeed,TripLength, FuelLevel, FuelConsume)
-VALUES (%s,%s,%s,%s,%s,%s);""")
+(StartTidspunkt, SluttTidspunkt, AvgVehicleSpeed,TripTime, Co2, FuelConsume,FuelCost)
+VALUES (%s,%s,%s,%s,%s,%s,%s);""")
 
-data_Trip = ('TestTidS','TestTidF', jsn.getAvgSpeed(),10,10,10)
+data_Trip = (jsn.getStartTime(),jsn.getEndTime(), jsn.getAvgSpeed(),jsn.getTripTime(),jsn.getCo2Emisions(),jsn.getFuelConsume(),jsn.getFuelCost())
 #Execute SQL code for db interaction
 cursor.execute(add_avgSpeed,data_Trip)
 
