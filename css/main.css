@@ -1,0 +1,9 @@
+html, body {
+    background-color: orchid;
+    /*background: orchid url(bg.gif) repeat center center;*/
+    color: #ffffff;
+}
+
+.formText {
+    color: black;
+}
