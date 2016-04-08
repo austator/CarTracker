@@ -1,6 +1,9 @@
 <html>
 <head>
     <title>CarTracker</title>
+    <meta charset="utf-8">
+
+    <title>CarTracker</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
@@ -17,15 +20,26 @@
 </head>
 <body>
 
-<?php $id = $_POST["id"] - 1;
+<?php
 
+$servername = "mysql.stud.ntnu.no";
+$username = "madssst_PU";
+$password = "";
+$db = "madssst_PUDB";
 
-$db = mysql_connect("mysql.stud.ntnu.no", "madssst_PU", "");
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $db);
 
-mysql_select_db("madssst_PUDB", $db);
-$result = mysql_query("SELECT * FROM Trip ORDER BY idTrip DESC LIMIT 1", $db);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+} else {
+    //echo "<h1>Connected successfully (´・ω・`)</h1><br>";
+}
 
-$maxIdTrip = mysql_result($result, 0, "idTrip");
+$sql = "SELECT * FROM Trip";
+$result = mysqli_query($conn, $sql);
+
 
 ?>
 
@@ -38,18 +52,28 @@ $maxIdTrip = mysql_result($result, 0, "idTrip");
     <div class="row">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
-            <h4>Velg et tall fra og med 1 til og med <?php echo $maxIdTrip; ?></h4>
             <form action="trip.php" method="post" role="form">
                 <div class="form-group">
-                    <label for="number">TripID</label>
-                    <input type="number" class="form-control formText" id="id" name="id"><br>
+                    <label for="number">Velg tur:</label>
+                    <select class="form-control formText" id="id" name="id">
+                        <?php
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<option value='" . $row["idTrip"] . "'>" . $row["StartTidspunkt"] . "</option>";
+                            }
+                        }
+                        ?>
+                    </select>
+                    <br>
+                    <button type="submit" class="btn btn-default">Velg</button>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <div class="form-group"></div>
-            <button type="submit" class="btn btn-default" onclick="location.href='overview.php';">Overview</button>
+            <button type="submit" class="btn btn-default" onclick="location.href='overview.php';">Oversikt over alle
+                turer
+            </button>
             <div class="form-group"></div>
-            <button type="submit" class="btn btn-default" onclick="location.href='fuel.php';">Fuel Consumption</button>
+            
         </div>
         <div class="col-xs-4"></div>
     </div>
