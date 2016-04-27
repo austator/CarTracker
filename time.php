@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>CarTracker testerino</title>
+    <title>CarTracker</title>
     <meta charset="utf-8">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -288,7 +288,7 @@
 <script>$(function () {
         $('#dayFuel').highcharts({
             title: {
-                text: 'Gjennomsnittlig Tidbruk Per Tur Per Dag',
+                text: 'Gjennomsnittlig Tidsbruk Per Tur Per Dag',
                 x: -20 //center
             },
             subtitle: {

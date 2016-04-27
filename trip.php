@@ -84,7 +84,7 @@
 
             $thisTripTime = $tripTimeHours * 3600 + $tripTimeMinutes * 60 + $tripTimeSeconds;
 
-            echo "TurID: ", $idTrip, "<br>";
+            //echo "TurID: ", $idTrip, "<br>";
             echo "Starttidspunkt: ", $startTidspunkt, "<br>";
             echo "Sluttidspunkt: ", $sluttTidspunkt, "<br>";
             echo "Gjennomsnittlig fart: ", $avgVehicleSpeed, " km/t", "<br>";
